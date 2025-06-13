@@ -1,0 +1,6 @@
+a = ord(input("예제 입력 1 : "))
+print(", 예제 출력 1:",a)
+b = ord(input("예제 입력 2 : "))
+print(", 예제 출력 2:",b)
+c = ord(input("예제 입력 3 : "))
+print(", 예제 출력 3:",c)
