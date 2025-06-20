@@ -1,34 +1,22 @@
 from collections import deque
+import sys
 
-q1 = deque()
-q2 = deque()
+n, w, L = map(int, sys.stdin.readline().split())
+q1 = list(map(int, sys.stdin.readline().split()))
 
-n, w, L = map(int,input().split())
+q2 = deque([0] * w) # 길이가 w이고 값을 0으로 deque을 초기화
 t = 0
 tL = 0
-for i in map(int,input().split()) :
-    q1.append(i)
-    
 
-while 1 :
-    if q1 :
-        item = q1.popleft()
-    else :
-        if L >= tL : # 다리에 트럭이 들어갈 수 있는 경우
-            t += w
-            break
-        else : # 다리에 트럭이 들어갈 수 없는 경우
-            t += w-len(q2) # 현재 도로 위에 존재하는 트럭 수만큼 제외하고 더한다.
-            tL -= q2.popleft()
-            continue
+while q2 : # q2에 있는 원소를 모두 빼내었을 때
+    t += 1
+    out = q2.popleft()
+    tL -= out
 
-    tL += item
-    t += 1 # 트럭이 진입하는 시간
-    if L >= tL : # 다리에 트럭이 들어갈 수 있는 경우
-        q2.append(item)
-    else : # 다리에 트럭이 들어갈 수 없는 경우
-        t += w-len(q2) # 현재 도로 위에 존재하는 트럭 수만큼 제외하고 더한다.
-        tL -= q2.popleft()
-        q2.append(item)
-        
+    if q1:
+        if tL + q1[0] <= L:
+            q2.append(q1[0])
+            tL += q1.pop(0)
+        else:
+            q2.append(0)
 print(t)

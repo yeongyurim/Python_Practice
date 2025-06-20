@@ -1,24 +1,16 @@
-from collections import deque
-q = deque()
-q2 = deque()
-
+import heapq
+import sys
+input = sys.stdin.readline
 n = int(input())
 
+li = []
+heapq.heapify(li)
 for i in range(n) :
-    temp = int(input())
-    if temp != 0 :
-        q.append(temp)
+    new = int(input())
+    if new == 0 :
+        if li :
+            print(heapq.heappop(li))
+        else : 
+            print(0)
     else :
-        if q :
-            min = 100000
-            while q :
-                p = q.pop()
-                if min > p :
-                    min = p
-                q2.append(p)
-            q2.remove(min)
-            while q2 :
-                q.append(q2.pop())
-            print(min)
-        else :
-            print('0')
+        heapq.heappush(li, new)
