@@ -1,8 +1,8 @@
 import sys
 line = sys.stdin.readline
 
-st = line()
-result = []
+st = line().rstrip()
+j = 0
 while st[0] != "-":
     stack = []
     count = 0
@@ -11,15 +11,12 @@ while st[0] != "-":
             stack.append(i)
         else :
             if stack :
-                popped = stack.pop()
-                if popped != '{' :
-                    count += 1
+                stack.pop()
             else :
                 count += 1
+                stack.append('{')
     if stack :
-        count += len(stack)
-    result.append(count)
-    st = line()
-
-for idx, i in enumerate(result) :
-    print(str(idx+1)+".",i)
+        count += len(stack) // 2
+    j += 1
+    print(str(j)+".",str(count))
+    st = line().rstrip()
