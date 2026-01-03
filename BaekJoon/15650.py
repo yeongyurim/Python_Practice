@@ -3,7 +3,7 @@ def findPossibleCombinations(N, M, arr, idx):
         result.append(arr[:])
         return
     for i in range(1,N + 1):
-        if i in arr :
+        if arr and arr[-1] >= i:
             continue
         arr.append(i)
         findPossibleCombinations(N, M, arr[:], i+1)
