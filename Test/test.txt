@@ -1,0 +1,25 @@
+import json
+import random
+from datetime import datetime, timedelta
+
+# 시작 시간 설정 (오늘 날짜 12시 정각 기준)
+start_time = datetime(2026, 3, 20, 12, 0, 0)
+data = []
+
+# 3600개(1시간 분량)의 초별 랜덤 데이터 생성
+for i in range(3600):
+    current_time = start_time + timedelta(seconds=i)
+    
+    # 년-월-일 시:분:초 포맷으로 예쁘게 문자열 변환
+    time_str = current_time.strftime("%H:%M:%S")
+    
+    data.append({
+        "timestamp": time_str,
+        "status": random.choice([0, 1])  # 0 또는 1 랜덤 배정
+    })
+
+# dummy_data.json 파일로 저장
+with open("dummy_data.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=4)
+
+print("✅ 3600개의 데이터가 dummy_data.json 파일로 깔끔하게 생성됐어!")
