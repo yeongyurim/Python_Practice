@@ -1,0 +1,17 @@
+a = [(1,1),(1,8),(3,8)]
+x4 =0
+y4 =0
+xlist = []
+ylist = []
+for x,y in a:
+    xlist.append(x)
+    ylist.append(y)
+
+for x in xlist:
+    if xlist.count(x) == 1:
+        x4=x
+for y in ylist:
+    if ylist.count(y) == 1:
+        y4=y
+
+print(x4,y4)
