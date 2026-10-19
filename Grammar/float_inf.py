@@ -1,0 +1,1 @@
+print(1 if float('inf')  > 9999 else 0)
